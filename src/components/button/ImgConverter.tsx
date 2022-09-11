@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import imageConverterStyles from "./ImageConverter.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
 type DisplayedImage = {
   url: string;
@@ -8,7 +10,9 @@ type DisplayedImage = {
 };
 
 const ImageConverter = () => {
+  const inputRef = useRef<HTMLElement>(null!);
   const [displayedImages, setDisplayedImages] = useState<DisplayedImage[]>([]);
+  const [success, setSuccess] = useState(false);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const formatFileSize = (bytes: number, decimalPoint: number) => {
       if (bytes === 0) return "0 Bytes";
@@ -32,14 +36,25 @@ const ImageConverter = () => {
     }
   };
 
+  const ClickFireUploadBtn = () => {
+    setSuccess(false);
+    inputRef.current.click();
+  };
+
   return (
     <div className={imageConverterStyles.ImageConverter}>
-      <input
-        type="file"
-        onChange={handleChange}
-        accept="image/*"
-        multiple={true}
-      />
+      <label>
+        <input
+          type="file"
+          onChange={handleChange}
+          accept="image/*"
+          multiple={true}
+          hidden
+        />
+        <button onClick={ClickFireUploadBtn}>
+          <FontAwesomeIcon style={{ width: "50px" }} icon={faCoffee} />
+        </button>
+      </label>
       <ul>
         {displayedImages.map((displayedImage, index) => {
           return (
