@@ -1,0 +1,278 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: aliceblue;
+}
+
+/* hansbagar-menu-button */
+.toggleButton {
+  border: none;
+  background-color: transparent;
+  z-index: 998;
+}
+.line-1 {
+  width: 30px;
+  height: 1px;
+  display: block;
+  background: #000;
+  transform: translate(0, -10px);
+  transition: all 0.2s ease-out;
+}
+.line-2 {
+  width: 30px;
+  height: 1px;
+  display: block;
+  background: #000;
+  transform: translate(0, 0px);
+  transition: all 0.2s ease-out;
+}
+.line-3 {
+  width: 30px;
+  height: 1px;
+  display: block;
+  background: #000;
+  transform: translate(0, 10px);
+  transition: all 0.2s ease-out;
+}
+.toggleButton[aria-expanded="true"] > .line-1 {
+  transform: translate(0, 0) rotate(-45deg);
+}
+.toggleButton[aria-expanded="true"] > .line-2 {
+  transform: translate(0, 0) rotate(45deg);
+}
+.toggleButton[aria-expanded="true"] > .line-3 {
+  display: none;
+}
+/* Navigation */
+.navigation {
+  width: 200px;
+  height: 100%;
+  /* display: none; */
+  align-items: center;
+  /* justify-content: center; */
+  position: fixed;
+  flex-direction: column;
+  padding: 6rem 1rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: beige;
+  z-index: 100;
+  transform: translateX(200%);
+  transition: transform 0.5s ease;
+}
+.navigation[aria-hidden="false"] {
+  /* display: flex; */
+  transform: none;
+}
+.navigation-item {
+  padding: 0;
+  text-align: left;
+  font-size: 16px;
+  color: #666;
+  border-bottom: 1px solid #222;
+  margin: 10px 0;
+  transition: transform 0.3s ease;
+}
+.navigation-item:hover {
+  color: #0054ad;
+  text-decoration: underline;
+  opacity: 0.8;
+  transform: scale(1.02, 1.02);
+}
+.navigation-list {
+  display: flex;
+}
+.navigation-icon {
+  width: 25px;
+  padding-right: 10px;
+}
+/* Under_Navigation */
+.under-navigation {
+  /* display: none; */
+  width: 70%;
+  background-color: antiquewhite;
+  padding: 5px 10px;
+  margin-left: auto;
+  z-index: 150;
+  transform: translateX(200%);
+  transition: transform 0.5s ease;
+}
+.under-navigation[aria-hidden="false"] {
+  /* display: block; */
+  transform: none;
+}
+.under-navigation ul {
+  margin: 0;
+  text-align: left;
+}
+.navigation-list {
+  font-size: 20px;
+  margin: 10px 0;
+  text-decoration: underline;
+  transition: ease 0.3s all;
+}
+.navigation-list:hover {
+  color: #0054ad;
+  transform: scale(1.1, 1.1);
+}
+
+.card {
+  max-width: 800px;
+  width: 100%;
+  /* height: 800px; */
+  margin: 50px auto;
+  border-radius: 30px;
+  box-shadow: 3px 3px 10px #000;
+  text-align: center;
+}
+.backBtn {
+  text-align: right;
+  margin-right: 40px;
+  cursor: pointer;
+}
+.card h3 {
+  margin: 0;
+  padding: 10px 0;
+}
+.select_moni {
+  padding: 30px;
+}
+.select_moni_btn {
+  margin: 20px 40px;
+  padding: 30px 80px;
+  font-size: 20px;
+  color: red;
+  border-radius: 20px;
+  background-color: transparent;
+  border-color: red;
+}
+.select_moni_btn:hover {
+  color: white;
+  background-color: red;
+  box-shadow: 3px 3px 10px gray;
+}
+.select_slide_btn {
+  margin: 20px 40px;
+  padding: 30px 80px;
+  font-size: 20px;
+  color: skyblue;
+  border-radius: 20px;
+  background-color: transparent;
+  border-color: skyblue;
+}
+.select_slide_btn:hover {
+  color: white;
+  background-color: skyblue;
+  box-shadow: 3px 3px 10px gray;
+}
+.select_division_btn {
+  margin: 20px 40px;
+  padding: 30px 80px;
+  font-size: 20px;
+  color: #006400;
+  border-radius: 20px;
+  background-color: transparent;
+  border-color: #006400;
+}
+.select_division_btn:hover {
+  color: white;
+  background-color: #006400;
+  box-shadow: 3px 3px 10px gray;
+}
+.imageButton {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 20px;
+  color: #fff;
+  background-color: #006400;
+  border: none;
+  transition: ease-in-out 0.3s all;
+}
+.imageButton:hover {
+  color: #006400;
+  background-color: #fff;
+  box-shadow: 3px 3px 10px #006400;
+}
+.imageArea {
+  display: flex;
+  justify-content: space-evenly;
+}
+.imageArea_item {
+  max-width: 500px;
+  width: 100%;
+  margin: 10px auto;
+  padding: 20px 10px;
+}
+.circle_btn_area {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.circle_btn {
+  width: 50px;
+  height: 50px;
+  margin: auto 10px;
+  color: #fff;
+  background-color: #000;
+  border-radius: 999px;
+}
+.circle_btn:hover {
+  color: #000;
+  background-color: #fff;
+  box-shadow: 3px 3px 10px #000;
+}
+.divisionArea_item {
+  padding: 20px;
+}
+.divisionArea_inner {
+  display: flex;
+  justify-content: center;
+}
+.divisionImage {
+  max-width: 350px;
+  width: 100%;
+  height: 280px;
+  background-color: aliceblue;
+  border: solid 1px #000;
+}
+.trisectArea_item {
+  padding: 20px 0;
+}
+.trisectArea_inner {
+  display: flex;
+  justify-content: center;
+}
+.trisectImage {
+  max-width: 240px;
+  width: 100%;
+  height: 190px;
+  background-color: aliceblue;
+  border: solid 1px #000;
+}
