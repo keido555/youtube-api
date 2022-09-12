@@ -30,7 +30,10 @@ const Home: NextPage = () => {
 
           {posts.map((props: any) => {
             return (
-              <div key={props.id}>
+              <div
+                key={props.id}
+                style={{ width: "900px", borderBottom: "solid 1px" }}
+              >
                 <p>{props.name}</p>
                 <p>{props.email}</p>
                 <p>{props.body}</p>
@@ -44,3 +47,9 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+//https://python-work.com/postgresql-psycopg2/
+
+//https://www.learning-nao.com/?p=3016
+
+//https://www.gis-py.com/entry/py-postgre
