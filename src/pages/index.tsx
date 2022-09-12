@@ -1,10 +1,23 @@
 import type { NextPage } from "next";
+import { useState, useCallback, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 
 import { Layout } from "src/components/layout/layout";
 import ImageConverter from "src/components/button/ImgConverter";
 
 const Home: NextPage = () => {
+  const [posts, setPosts] = useState([]);
+
+  const getPosts = useCallback(async () => {
+    const res = await fetch("https://jsonplaceholder.typicode.com/comments");
+    const json = await res.json();
+    setPosts(json);
+  }, []);
+
+  useEffect(() => {
+    getPosts();
+  }, [getPosts]);
+
   return (
     <div className={styles.container}>
       <Layout>
@@ -15,40 +28,15 @@ const Home: NextPage = () => {
 
           <ImageConverter />
 
-          <p className={styles.description}>
-            Get started by editing{" "}
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-
-          <div className={styles.grid}>
-            <a href="https://nextjs.org/docs" className={styles.card}>
-              <h2>Documentation &rarr;</h2>
-              <p>Find in-depth information about Next.js features and API.</p>
-            </a>
-
-            <a href="https://nextjs.org/learn" className={styles.card}>
-              <h2>Learn &rarr;</h2>
-              <p>Learn about Next.js in an interactive course with quizzes!</p>
-            </a>
-
-            <a
-              href="https://github.com/vercel/next.js/tree/canary/examples"
-              className={styles.card}
-            >
-              <h2>Examples &rarr;</h2>
-              <p>Discover and deploy boilerplate example Next.js projects.</p>
-            </a>
-
-            <a
-              href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              className={styles.card}
-            >
-              <h2>Deploy &rarr;</h2>
-              <p>
-                Instantly deploy your Next.js site to a public URL with Vercel.
-              </p>
-            </a>
-          </div>
+          {posts.map((props: any) => {
+            return (
+              <div key={props.id}>
+                <p>{props.name}</p>
+                <p>{props.email}</p>
+                <p>{props.body}</p>
+              </div>
+            );
+          })}
         </main>
       </Layout>
     </div>

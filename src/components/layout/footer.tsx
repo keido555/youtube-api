@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Image from "next/image";
+import vercel from "./public/vercel.svg";
 
 export const Footer: NextPage = () => {
   return (
@@ -12,7 +13,8 @@ export const Footer: NextPage = () => {
         >
           Powered by{" "}
           <span>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+            {/* <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} /> */}
+            <Image src={vercel} alt="img" width={72} height={16} />
           </span>
         </a>
       </footer>

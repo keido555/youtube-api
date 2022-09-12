@@ -10,7 +10,7 @@ type DisplayedImage = {
 };
 
 const ImageConverter = () => {
-  const inputRef = useRef<HTMLElement>(null!);
+  const inputRef = useRef<HTMLElement | any>(null!);
   const [displayedImages, setDisplayedImages] = useState<DisplayedImage[]>([]);
   const [success, setSuccess] = useState(false);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,6 +49,7 @@ const ImageConverter = () => {
           onChange={handleChange}
           accept="image/*"
           multiple={true}
+          ref={inputRef}
           hidden
         />
         <button onClick={ClickFireUploadBtn}>
@@ -72,3 +73,7 @@ const ImageConverter = () => {
 };
 
 export default ImageConverter;
+
+// https://qiita.com/FumioNonaka/items/feb2fd5b362f2558acfa
+
+// https://keikenchi.com/object-can-benull
