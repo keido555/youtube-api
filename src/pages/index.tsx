@@ -4,20 +4,9 @@ import styles from "../styles/Home.module.css";
 
 import { Layout } from "src/components/layout/layout";
 import ImageConverter from "src/components/button/ImgConverter";
+import { Cards } from "src/components/card/cards";
 
 const Home: NextPage = () => {
-  const [posts, setPosts] = useState([]);
-
-  const getPosts = useCallback(async () => {
-    const res = await fetch("https://jsonplaceholder.typicode.com/comments");
-    const json = await res.json();
-    setPosts(json);
-  }, []);
-
-  useEffect(() => {
-    getPosts();
-  }, [getPosts]);
-
   return (
     <div className={styles.container}>
       <Layout>
@@ -28,18 +17,7 @@ const Home: NextPage = () => {
 
           <ImageConverter />
 
-          {posts.map((props: any) => {
-            return (
-              <div
-                key={props.id}
-                style={{ width: "900px", borderBottom: "solid 1px" }}
-              >
-                <p>{props.name}</p>
-                <p>{props.email}</p>
-                <p>{props.body}</p>
-              </div>
-            );
-          })}
+          <Cards />
         </main>
       </Layout>
     </div>
@@ -53,3 +31,7 @@ export default Home;
 //https://www.learning-nao.com/?p=3016
 
 //https://www.gis-py.com/entry/py-postgre
+
+// postgres に画像データを入れる
+// https://teratail.com/questions/82258
+// https://www.postgresql.jp/document/7.3/programmer/jdbc-binary-data.html
