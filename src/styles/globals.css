@@ -155,7 +155,7 @@ a {
 }
 .backBtn {
   text-align: right;
-  margin-right: 40px;
+  margin-right: 50px;
   cursor: pointer;
 }
 .card h3 {
@@ -290,4 +290,31 @@ a {
   padding: 10px;
   border-radius: 15px;
   box-shadow: 3px 3px 10px #000;
+}
+.cardPost {
+  text-align: center;
+  width: 50px;
+  padding: 5px 0;
+  margin: 0;
+  background-color: aquamarine;
+  border-radius: 10px;
+}
+.cardPost p {
+  margin: 0;
+}
+.postImg {
+  text-align: center;
+  margin: 20px 0;
+}
+.postPage {
+  max-width: 800px;
+  width: 100%;
+  margin: 0px auto;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: beige;
+  box-shadow: 3px 3px 10px #000;
+}
+.postData {
+  margin-bottom: 50px;
 }
