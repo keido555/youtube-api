@@ -62,9 +62,6 @@ const DataPost = () => {
 
           <div></div>
 
-          <div>
-            <SendCard />
-          </div>
           {/* <CardBtn /> */}
         </main>
       </Layout>
