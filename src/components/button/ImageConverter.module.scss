@@ -1,6 +1,7 @@
 .ImageConverter {
+  text-align: center;
   ul {
-    column-count: 3;
+    // column-count: 3;
     padding: 20px;
     list-style: none;
   }
@@ -19,5 +20,18 @@
   p {
     font-size: 13px;
     text-align: center;
+  }
+
+  label button {
+    background-color: cornflowerblue;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+  }
+  label button:hover {
+    background-color: #fff;
+    color: cornflowerblue;
+    box-shadow: 3px 3px 10px cornflowerblue;
   }
 }

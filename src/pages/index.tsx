@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import { useState, useCallback, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 
 import { Layout } from "src/components/layout/layout";

@@ -8,6 +8,7 @@ interface Props {
 
 const NAV_ITEMS = [
   { href: "/", label: "トップ" },
+  { href: "/dataPost", label: "データ" },
   { href: "/monitor", label: "画像比較" },
   { href: "/youtube", label: "Youtube" },
 ];

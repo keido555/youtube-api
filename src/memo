@@ -1,0 +1,107 @@
+コード拝見しました。ありがとうございます。それぞれの質問に回答させて頂きます。
+また、コードの全容がなく、バグの再現ができないため、一部の修正コードの納品となってしまうことをご容赦ください。
+
+①Selectを複数選択した状態で保存ボタンを押した時、select箇所がひとまとめに保存されるのではなく、それぞれ別の項目として保存する方法をお教えください。
+
+現状、
+
+—
+#SQL
+ins="insert into houkoku_tab \
+            (tenpoNo, text, text2, Image) \
+     values (%s, %s, %s, %s)"
+
+#DML
+dml = "insert"
+
+#発行
+sql = connect.sql(dml, ins, (tenpoNo, text, text2, Image))
+—
+などとなっていますが、postgresはvaluesを複数取れるはずです。以下のように変えれば一度のインサートで別の項目で保存できますよ
+—
+#SQL
+ins="insert into houkoku_tab \
+            (tenpoNo, text, text2, Image) \
+     values (%s, %s, %s, %s), (%s, %s, %s, %s)“
+
+#DML
+dml = "insert"
+
+#発行
+sql = connect.sql(dml, ins, (tenpoNo1, text1-1, text1-2, Image1, tenpoNo2, text2-1, text2-2, Image2))
+—
+
+
+それか、単に _insert_houkoku_logを複数呼べれば良い、という要望であれば、
+—
+async def get_submit(item: Submit_item):
+—
+を
+—
+async def get_submit(items: List[Submit_item]):
+—
+などとして、
+—
+for item in items:
+—
+のループの中に現状の”get_submit”の中身をそのまま入れてあげれば良いと思います。
+
+
+②画像を保存する機能を設置しようと思っています。画像ボタンをクリック時に指定したフォルダを開き、そこから画像を取得して保存したのですが、その方法をご教示ください。
+
+これはできません。公式ドキュメントを参照すると、そういったことを可能にする属性は定義されていません。
+https://developer.mozilla.org/ja/docs/Web/HTML/Element/input/file
+
+というか、これは、セキュリティ上、できてはならないです。以下のURLで詳細に説明されているので興味があればご覧ください。
+https://www.hos.co.jp/blog/20180129/
+https://stackoverflow.com/questions/1696877/how-to-set-a-value-to-a-file-input-in-html/1696884#1696884
+
+
+③上記画像を保存する際に、PostgreSQLで上手く保存できません。こちらの方法をお教えください。
+
+画像データの格納にはbytea型を使います。PostgreSQLのbytea型はmemorybuffer型を返すので、ちゃんとbytes関数なりで整形しないといけません。
+サンプルコードを提供しますのでご査収ください。
+
+—
+import psycopg2
+
+DSN  = "dbname=postgres user=shuzo_kino"
+SQL3 = "INSERT INTO image(byte_data)\
+        VALUES (%(imagedata)s);"
+SQL4 = "SELECT byte_data FROM image \
+        WHERE id = (%(id)s) LIMIT 1;"
+
+def saveImage(curs, query, filename, id):
+  vals = {'id': id}
+  curs.execute(query, vals)
+  fp = curs.fetchone()[0]
+  with open(filename,'wb') as file:
+    file.write(bytes(fp))
+
+def pushImage(curs, query, filename):
+  fp        = open(filename, "rb").read()
+  imgdata   = psycopg2.Binary(fp)
+  postquery = {'imagedata': imgdata}
+  curs.execute(query, postquery)
+
+with psycopg2.connect(DSN) as conn:
+  with conn.cursor() as curs:
+    distImg = "/Users/shuzo_kino/Desktop/sample.png"
+    saveImage(curs, SQL4, distImg, 16)
+
+    sourceImg = "/Users/shuzo_kino/Mexico.Tacos.01.jpg"
+    pushImage(curs, SQL3, sourceImg)
+—
+
+以上、宜しくお願いします。
+
+
+-
+
+④ 追加のご依頼：日時指定のやり方について
+
+postgresでwhere句とbetween構文を併用すれば実現できます。
+
+例) select * from users where created_at BETWEEN '2020-02-23 04:29:40' AND '2020-02-23 04:29:50';
+
+ご確認のほど、宜しくお願いします。

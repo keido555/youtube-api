@@ -318,3 +318,31 @@ a {
 .postData {
   margin-bottom: 50px;
 }
+.inputArea {
+  max-width: 300px;
+  width: 100%;
+  height: 30px;
+}
+.sendBtn {
+  display: flex;
+  justify-content: space-around;
+  max-width: 200px;
+  width: 100%;
+  margin: auto;
+  padding: 5px 20px;
+  font-size: 32px;
+  background-color: #0054ad;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}
+.sendBtn:hover {
+  background-color: #fff;
+  color: #0054ad;
+  box-shadow: 3px 3px 10px #0054ad;
+}
+.sendBtn svg {
+  margin-top: auto;
+  margin-bottom: auto;
+}

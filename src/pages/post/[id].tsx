@@ -45,9 +45,9 @@ const PostId = () => {
               <p>{comments?.body}</p>
             </div>
             <div>
-              <p style={{ textAlign: "center" }}>{posts.userId}</p>
-              <h3>{posts.title}</h3>
-              <p>{posts.body}</p>
+              <p style={{ textAlign: "center" }}>{posts?.userId}</p>
+              <h3>{posts?.title}</h3>
+              <p>{posts?.body}</p>
             </div>
           </div>
         </main>
