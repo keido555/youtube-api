@@ -9,6 +9,7 @@ import ImgButton, { DisplayedImage } from "src/components/button/ImgButton";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { SendCard } from "src/components/card/sendCard";
 
 const server = "http://localhost:8000/xxxxxxxx";
 
@@ -60,6 +61,10 @@ const DataPost = () => {
           </div>
 
           <div></div>
+
+          <div>
+            <SendCard />
+          </div>
           {/* <CardBtn /> */}
         </main>
       </Layout>

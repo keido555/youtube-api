@@ -1,0 +1,107 @@
+これの値を設定するにはどうすればよいですか?
+
+<input type="file" />
+
+-
+
+セキュリティ上の理由により、クライアント側のディスク ファイル システム パスには設定できません。
+
+<form name="foo" method="post" enctype="multipart/form-data">
+    <input type="file" value="c:/passwords.txt">
+</form>
+<script>document.foo.submit();</script>
+
+セキュリティ上の理由により、クライアント側のディスク ファイル システム パスには設定できません。
+
+想像：
+
+<form name="foo" method="post" enctype="multipart/form-data">
+    <input type="file" value="c:/passwords.txt">
+</form>
+<script>document.foo.submit();</script>
+アクセスする Web サイトでこれを実行できるようにしたくありませんか? =)
+
+この回答に見られるように、公開されている Web リソースにのみ設定できますが、これは明らかにクライアント側のディスク ファイル システム パスと同じではないため、そのコンテキストでは役に立ちません。
+
+-
+
+できません。
+
+ファイル入力の値を設定する唯一の方法は、ユーザーがファイルを選択することです。
+
+これは、セキュリティ上の理由から行われます。それ以外の場合は、クライアントのコンピューターから特定のファイルを自動的にアップロードする JavaScript を作成できます。
+
+-
+
+あなたの質問への回答ではありませんが (他の人が回答しています)、アップロードされたファイル フィールドの編集機能が必要な場合は、次のようにします。
+
+・ファイル名または URL、ダウンロードするためのクリック可能なリンクを印刷するだけで、このフィールドの現在の値を表示するか、画像の場合は、おそらくサムネイルとして表示するだけです
+・<input>新しいファイルをアップロードするためのタグ
+・チェックボックスをオンにすると、現在アップロードされているファイルが削除されます。「空の」ファイルをアップロードする方法がないことに注意してください。したがって、フィールドの値をクリアするには、このようなものが必要です
+
+-
+
+できません。そしてセキュリティ対策です。ファイルの入力値を機密データ ファイルに設定する JS を誰かが書いたと想像してみてください。
+
+-
+
+ここにいる他の全員が述べているように、JavaScript を使用して任意のファイルを自動的にアップロードすることはできません。
+
+でも！ コードで送信したい情報にアクセスできる場合 (つまり、 ではない場合C:\passwords.txt)、それをblobタイプとしてアップロードし、ファイルとして扱うことができます。
+
+サーバーが最終的に見るものは、誰かが実際に の値を設定するものと区別がつきません<input type="file" />。トリックは、最終的にはXMLHttpRequest()、サーバーで新しいことを開始することです...
+
+
+function uploadFile (data) {
+        // define data and connections
+    var blob = new Blob([JSON.stringify(data)]);
+    var url = URL.createObjectURL(blob);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'myForm.php', true);
+    
+        // define new form
+    var formData = new FormData();
+    formData.append('someUploadIdentifier', blob, 'someFileName.json');
+        
+        // action after uploading happens
+    xhr.onload = function(e) {
+        console.log("File uploading completed!");
+    };
+    
+        // do the uploading
+    console.log("File uploading started!");
+    xhr.send(formData);
+}
+
+    // This data/text below is local to the JS script, so we are allowed to send it!
+uploadFile({'hello!':'how are you?'});
+
+それで、あなたはこれを何に使うことができるでしょうか？HTML5キャンバス要素をjpgとして アップロードするために使用します。file inputこれにより、ユーザーは、サイズ変更や変更などを行ったばかりのローカルのキャッシュされた画像を選択するためだけに、要素を開く手間を省くことができます。ただし、どのファイル タイプでも機能するはずです。
+
+-
+
+URL を入力ファイルにロードするための完全な例を作成しました。
+
+function loadURLToInputFiled(url){
+  getImgURL(url, (imgBlob)=>{
+    // Load img blob to input
+    // WIP: UTF8 character error
+    let fileName = 'hasFilename.jpg'
+    let file = new File([imgBlob], fileName,{type:"image/jpeg", lastModified:new Date().getTime()}, 'utf-8');
+    let container = new DataTransfer(); 
+    container.items.add(file);
+    document.querySelector('#file_input').files = container.files;
+    
+  })
+}
+// xmlHTTP return blob respond
+function getImgURL(url, callback){
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+      callback(xhr.response);
+  };
+  xhr.open('GET', url);
+  xhr.responseType = 'blob';
+  xhr.send();
+}
+

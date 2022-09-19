@@ -56,6 +56,12 @@ https://developer.mozilla.org/ja/docs/Web/HTML/Element/input/file
 https://www.hos.co.jp/blog/20180129/
 https://stackoverflow.com/questions/1696877/how-to-set-a-value-to-a-file-input-in-html/1696884#1696884
 
+->
+Python側で開くのはどうか
+https://imagingsolution.net/program/python/tkinter/openfiledialog/
+
+
+→　難波さんに聞く案件
 
 ③上記画像を保存する際に、PostgreSQLで上手く保存できません。こちらの方法をお教えください。
 
@@ -63,6 +69,8 @@ https://stackoverflow.com/questions/1696877/how-to-set-a-value-to-a-file-input-i
 サンプルコードを提供しますのでご査収ください。
 
 —
+https://shuzo-kino.hateblo.jp/entry/2016/11/29/223514
+
 import psycopg2
 
 DSN  = "dbname=postgres user=shuzo_kino"
@@ -105,3 +113,10 @@ postgresでwhere句とbetween構文を併用すれば実現できます。
 例) select * from users where created_at BETWEEN '2020-02-23 04:29:40' AND '2020-02-23 04:29:50';
 
 ご確認のほど、宜しくお願いします。
+
+
+ー
+
+検索フォーム
+https://zenn.dev/hiromu617/articles/ba96c08776424f
+https://www.mismith.me/blog/web/nextjs-algolia
