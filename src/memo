@@ -123,3 +123,25 @@ postgresでwhere句とbetween構文を併用すれば実現できます。
 検索フォーム
 https://zenn.dev/hiromu617/articles/ba96c08776424f
 https://www.mismith.me/blog/web/nextjs-algolia
+
+
+ーーーーー
+
+pythonでダウンロード先を指定、名前も設定する
+
+Seleniumで指定フォルダにファイルをダウンロードする with webdriver-manager
+https://note.com/digiholic_life/n/nd174f0d1203e
+
+Seleniumで指定フォルダにダウンロード + ファイルを指定のフォルダに移動する [Pythonチートシート]
+https://life100create.com/selenium_download_move_file/
+
+Pythonで大量のファイル名を変更する方法｜Python自動化のできること
+https://kino-code.com/python-rename/
+
+ファイル名またはディレクトリ名を変更する
+https://www.javadrive.jp/python/file/index16.html
+
+
+
+ドラッグ＆ドロップでファイルを一括取得したい（react）
+https://www.cresco.co.jp/blog/entry/16359/
