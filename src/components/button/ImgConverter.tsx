@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import Image from "next/image";
 import imageConverterStyles from "./ImageConverter.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";

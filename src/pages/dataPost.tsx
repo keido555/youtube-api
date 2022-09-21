@@ -20,7 +20,8 @@ const DataPost = () => {
   const [displayedImages, setDisplayedImages] = useState<DisplayedImage[]>([]);
 
   const handleSendClick = async () => {
-    // onClick時にPython（PostgreSQL）にデータを送信し、データを登録する
+    // onClick時に指定のフォルダ「/var/www/html/uriba/imageFolder」にデータを送り、
+    // そこで保存する機能を実装したい
   };
 
   return (

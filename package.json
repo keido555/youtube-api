@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next build && next export",
+    "serve": "yarn export && serve ./out"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
@@ -16,7 +18,9 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/material": "^5.10.5",
     "@mui/styled-engine-sc": "^5.10.3",
+    "export": "^0.1.337",
     "next": "12.2.5",
+    "next-export": "^0.1.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-slideshow-image": "^4.0.5",

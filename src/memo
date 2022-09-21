@@ -145,3 +145,16 @@ https://www.javadrive.jp/python/file/index16.html
 
 ドラッグ＆ドロップでファイルを一括取得したい（react）
 https://www.cresco.co.jp/blog/entry/16359/
+
+ーーーーー
+急場を凌ぐ方法
+select 文にて inner setImage_tab? の画像を参考にする
+
+ルーティングはこちらを参考
+https://nextjs-ja-translation-docs.vercel.app/docs/api-reference/next.config.js/exportPathMap
+https://qin.salon/questions/KQWuBtP3ZB
+
+https://nextjs.org/docs/api-reference/next.config.js/trailing-slash
+
+
+FastAPIを使用してtabはコピー、アップロードの方は
