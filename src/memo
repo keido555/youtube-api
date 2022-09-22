@@ -158,3 +158,8 @@ https://nextjs.org/docs/api-reference/next.config.js/trailing-slash
 
 
 FastAPIを使用してtabはコピー、アップロードの方は
+
+
+ーーーーー
+Next.jsでクエリパラメータを遷移先に渡すにはどうすればいいのか？
+https://qiita.com/syu_ikeda/items/52fbe7480b2b9a54db0c
