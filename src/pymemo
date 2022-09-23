@@ -1,0 +1,79 @@
+from fastapi import FastAPI, File, UploadFile
+from starlette.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+import shutil
+import os
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
+@app.get("/test")
+async def root():
+    return {"message": "Hello World"}
+
+@app.post("/uploadfile")
+async def upload_file(query: UploadFile = File(...)):
+    if query:
+        filename = query.filename
+        fileobj = query.file
+        upload_dir = open(os.path.join("/var/www/html/uriba/image", filename),'wb+')
+        shutil.copyfileobj(fileobj, upload_dir)
+        upload_dir.close()
+        return {"filename:": filename}
+    return {"error": "UploadFile not found."}
+
+
+
+環境構築メモ
+
+#Rect環境構築
+sudo apt install -y nodejs npm
+sudo npm install n -g
+sudo n stable
+sudo apt purge -y nodejs npm
+exec $SHELL -l
+node -v
+sudo npm install --global yarn
+yarn add next react react-dom
+
+#パッケージ追加
+yarn add axios
+yarn install
+
+#React実行
+yarn dev
+
+#Pythonバージョンアップ
+sudo apt update
+sudo apt install build-essential libbz2-dev libdb-dev \
+  libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
+  libncursesw5-dev libsqlite3-dev libssl-dev \
+  zlib1g-dev uuid-dev tk-dev
+tar xJf Python-3.10.7.tar.xz
+cd Python-3.10.7
+./configure
+make
+sudo make install
+shutdown -r now
+python3 -V
+
+#FastAPI+Unicorn環境構築
+sudo apt install python3-pip
+python3 -m pip install fastapi
+python3 -m pip install uvicorn
+python3 -m pip install python-multipart
+
+# Unicorn実行
+python3 -m uvicorn main:app --reload --port 8081
+
+#ディレクトリ作成
+sudo mkdir -p /var/www/html/uriba/image
+sudo chmod 755 /var/www/html/uriba/image
+

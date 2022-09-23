@@ -1,0 +1,124 @@
+import { useState } from "react";
+
+import { CardBtn } from "src/components/card/cardBtn";
+import InputDefault from "src/components/input/inputDefault";
+import { InputText } from "src/components/input/inputText";
+import { Layout } from "src/components/layout/layout";
+import styles from "../styles/Home.module.css";
+import ImgButton, { DisplayedImage } from "src/components/button/ImgButton";
+import axios from 'axios';
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { SendCard } from "src/components/card/sendCard";
+
+const url = "http://localhost:8081/uploadfile";
+
+const DataPost = () => {
+  const [text, setText] = useState("");
+  const [text2, setText2] = useState("");
+  const [personName, setPersonName] = useState<string[]>([]);
+  const [displayedImages, setDisplayedImages] = useState<DisplayedImage[]>([]);
+
+  const handleSendClick = async () => {
+    const query = new FormData();
+    let blob = await fetch(displayedImages[0].url).then(r => r.blob());
+    query.append('query', blob, displayedImages[0].name);
+      await axios.post(url, query)
+        .then((response) => console.log("response : ", response.data))
+        .catch((error) => console.log("error : ", error));
+  };
+
+  return (
+    <div className={styles.container}>
+      <Layout>
+        <main className={styles.main2}>
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <div style={{ maxWidth: "500px", width: "100%" }}>
+              <InputDefault
+                personName={personName}
+                setPersonName={setPersonName}
+              />
+
+              <InputText
+                text={text}
+                text2={text2}
+                setText={setText}
+                setText2={setText2}
+              />
+
+              <div>
+                <button onClick={handleSendClick} className="sendBtn">
+                  <FontAwesomeIcon
+                    style={{ width: "50px" }}
+                    icon={faEnvelope}
+                  />
+                  送信
+                </button>
+              </div>
+            </div>
+
+            <div style={{ maxWidth: "500px", width: "100%" }}>
+              <ImgButton
+                displayedImages={displayedImages}
+                setDisplayedImages={setDisplayedImages}
+              />
+            </div>
+          </div>
+
+          <div></div>
+
+          {/* <CardBtn /> */}
+        </main>
+      </Layout>
+    </div>
+  );
+};
+
+export default DataPost;
+
+// 複数選択
+// https://www.happylifecreators.com/blog/20220218/
+
+
+
+// package.json
+
+{
+  "name": "youtube-api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mui/material": "^5.10.5",
+    "@mui/styled-engine-sc": "^5.10.3",
+    "axios": "^0.27.2",
+    "mime": "^3.0.0",
+    "next": "^12.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-slideshow-image": "^4.0.5",
+    "sass": "^1.54.9",
+    "styled-components": "^5.3.5",
+    "swr": "^1.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.7.13",
+    "@types/react": "18.0.17",
+    "@types/react-dom": "18.0.6",
+    "eslint": "8.23.0",
+    "eslint-config-next": "12.2.5",
+    "typescript": "4.8.2"
+  },
+  "proxy": "http://localhost:8081"
+}
