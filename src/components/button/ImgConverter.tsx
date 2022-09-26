@@ -40,6 +40,8 @@ const ImageConverter = () => {
     inputRef.current.click();
   };
 
+  console.log(displayedImages);
+
   return (
     <div className={imageConverterStyles.ImageConverter}>
       <label>
